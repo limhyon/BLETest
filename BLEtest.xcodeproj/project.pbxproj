@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E39A538419EE7DEB00D50C81 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E39A538319EE7DEB00D50C81 /* CoreBluetooth.framework */; };
 		E3AF10FF19ED87D3001D110C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E3AF10FE19ED87D3001D110C /* main.m */; };
 		E3AF110219ED87D3001D110C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E3AF110119ED87D3001D110C /* AppDelegate.m */; };
 		E3AF110519ED87D3001D110C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3AF110419ED87D3001D110C /* ViewController.m */; };
@@ -27,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E39A538319EE7DEB00D50C81 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		E3AF10F919ED87D2001D110C /* BLEtest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BLEtest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3AF10FD19ED87D2001D110C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E3AF10FE19ED87D3001D110C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -47,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E39A538419EE7DEB00D50C81 /* CoreBluetooth.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +66,7 @@
 		E3AF10F019ED87D2001D110C = {
 			isa = PBXGroup;
 			children = (
+				E39A538319EE7DEB00D50C81 /* CoreBluetooth.framework */,
 				E3AF10FB19ED87D2001D110C /* BLEtest */,
 				E3AF111519ED87D3001D110C /* BLEtestTests */,
 				E3AF10FA19ED87D2001D110C /* Products */,
@@ -168,6 +172,7 @@
 				TargetAttributes = {
 					E3AF10F819ED87D2001D110C = {
 						CreatedOnToolsVersion = 6.0.1;
+						DevelopmentTeam = WUTBMA7R65;
 					};
 					E3AF111119ED87D3001D110C = {
 						CreatedOnToolsVersion = 6.0.1;
@@ -343,9 +348,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				INFOPLIST_FILE = BLEtest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -353,9 +362,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				INFOPLIST_FILE = BLEtest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -412,6 +425,7 @@
 				E3AF111E19ED87D3001D110C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E3AF111F19ED87D3001D110C /* Build configuration list for PBXNativeTarget "BLEtestTests" */ = {
 			isa = XCConfigurationList;
@@ -420,6 +434,7 @@
 				E3AF112119ED87D3001D110C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

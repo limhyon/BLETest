@@ -7,8 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreBluetooth/CoreBluetooth.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController<CBCentralManagerDelegate, CBPeripheralDelegate>
+{
+    CBCentralManager* CenManager;
+}
+@property (strong) CBPeripheral* ConPeripheral;
+@property (strong) CBCharacteristic* myCharac;
+
+@property (retain, nonatomic) IBOutlet UILabel *rollLabel;
+@property (retain, nonatomic) IBOutlet UILabel *pitchLabel;
+@property (retain, nonatomic) IBOutlet UILabel *thrLabel;
+@property (retain, nonatomic) IBOutlet UILabel *yawLabel;
+- (IBAction)updateBtn:(id)sender;
+@property (retain, nonatomic) IBOutlet UIButton *updateBtnRef;
 
 
 @end
