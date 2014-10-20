@@ -7,7 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E39941B819F2AF3E00D9C17A /* arrowDown.png in Resources */ = {isa = PBXBuildFile; fileRef = E39941B719F2AF3E00D9C17A /* arrowDown.png */; };
+		E39941B919F2AF3E00D9C17A /* arrowDown.png in Resources */ = {isa = PBXBuildFile; fileRef = E39941B719F2AF3E00D9C17A /* arrowDown.png */; };
 		E39A538419EE7DEB00D50C81 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E39A538319EE7DEB00D50C81 /* CoreBluetooth.framework */; };
+		E3A5D44119F2DC9A00650F55 /* arrowRight.png in Resources */ = {isa = PBXBuildFile; fileRef = E3A5D44019F2DC9A00650F55 /* arrowRight.png */; };
+		E3A5D44219F2DC9A00650F55 /* arrowRight.png in Resources */ = {isa = PBXBuildFile; fileRef = E3A5D44019F2DC9A00650F55 /* arrowRight.png */; };
 		E3AF10FF19ED87D3001D110C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E3AF10FE19ED87D3001D110C /* main.m */; };
 		E3AF110219ED87D3001D110C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E3AF110119ED87D3001D110C /* AppDelegate.m */; };
 		E3AF110519ED87D3001D110C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3AF110419ED87D3001D110C /* ViewController.m */; };
@@ -28,7 +32,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E39941B719F2AF3E00D9C17A /* arrowDown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrowDown.png; sourceTree = "<group>"; };
 		E39A538319EE7DEB00D50C81 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		E3A5D44019F2DC9A00650F55 /* arrowRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrowRight.png; sourceTree = "<group>"; };
 		E3AF10F919ED87D2001D110C /* BLEtest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BLEtest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3AF10FD19ED87D2001D110C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E3AF10FE19ED87D3001D110C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -90,6 +96,8 @@
 				E3AF110319ED87D3001D110C /* ViewController.h */,
 				E3AF110419ED87D3001D110C /* ViewController.m */,
 				E3AF110619ED87D3001D110C /* Main.storyboard */,
+				E39941B719F2AF3E00D9C17A /* arrowDown.png */,
+				E3A5D44019F2DC9A00650F55 /* arrowRight.png */,
 				E3AF110919ED87D3001D110C /* Images.xcassets */,
 				E3AF110B19ED87D3001D110C /* LaunchScreen.xib */,
 				E3AF10FC19ED87D2001D110C /* Supporting Files */,
@@ -207,6 +215,8 @@
 				E3AF110819ED87D3001D110C /* Main.storyboard in Resources */,
 				E3AF110D19ED87D3001D110C /* LaunchScreen.xib in Resources */,
 				E3AF110A19ED87D3001D110C /* Images.xcassets in Resources */,
+				E3A5D44119F2DC9A00650F55 /* arrowRight.png in Resources */,
+				E39941B819F2AF3E00D9C17A /* arrowDown.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,6 +224,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3A5D44219F2DC9A00650F55 /* arrowRight.png in Resources */,
+				E39941B919F2AF3E00D9C17A /* arrowDown.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
