@@ -8,6 +8,8 @@
 
 #import "ViewController.h"
 
+char RGB[5];
+
 @interface ViewController ()
 
 @end
@@ -22,14 +24,16 @@
     [skyImageView release]; skyImageView = nil;
     [yawScrollView release]; yawScrollView = nil;
     [pitchScrollView release]; pitchScrollView = nil;
+    [windowView release]; windowView = nil;
     
-    [_rollLabel release];
-    [_pitchLabel release];
-    [_yawLabel release];
-    [_throttleLabel release];
+    [rollLabel release]; rollLabel = nil;
+    [pitchLabel release]; pitchLabel = nil;
+    [yawLabel release]; yawLabel = nil;
+    [thrLabel release]; thrLabel = nil;
+    [comLabel release]; comLabel = nil;
+    
     [_graphBtnRef release];
     [_blackImageView release];
-    [_commandLabel release];
     [super dealloc];
 }
 
@@ -135,7 +139,89 @@
     
     [pitchScrollView setContentOffset:CGPointMake(0, 450)];
 
+    UIImageView* circleImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 375, 320)];
+    [circleImage setImage:[UIImage imageNamed:@"circle.png"]];
+    [self.view addSubview:circleImage];
+    [circleImage release];
     
+    
+    windowView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 375, 320)];
+    [windowView setBackgroundColor:[UIColor blackColor]];
+    [self.view addSubview:windowView];
+    windowFlag = 1;
+    windowView.hidden = YES;
+    
+    
+    
+    
+    UILabel* rollTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 70, 30)];
+    [rollTitle setText:@"Roll"];
+    [rollTitle setFont:[UIFont systemFontOfSize:20]];
+    [rollTitle setTextColor:[UIColor whiteColor]];
+    [rollTitle setCenter:CGPointMake(70, 50)];
+    [windowView addSubview:rollTitle];
+    [rollTitle release];
+    
+    UILabel* pitchTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 70, 30)];
+    [pitchTitle setText:@"Pitch"];
+    [pitchTitle setFont:[UIFont systemFontOfSize:20]];
+    [pitchTitle setTextColor:[UIColor whiteColor]];
+    [pitchTitle setCenter:CGPointMake(70, 90)];
+    [windowView addSubview:pitchTitle];
+    [pitchTitle release];
+    
+    UILabel* yawTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 70, 30)];
+    [yawTitle setText:@"Yaw"];
+    [yawTitle setFont:[UIFont systemFontOfSize:20]];
+    [yawTitle setTextColor:[UIColor whiteColor]];
+    [yawTitle setCenter:CGPointMake(70, 130)];
+    [windowView addSubview:yawTitle];
+    [yawTitle release];
+    
+    UILabel* throttleTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 70, 30)];
+    [throttleTitle setText:@"Throttle"];
+    [throttleTitle setFont:[UIFont systemFontOfSize:20]];
+    [throttleTitle setTextColor:[UIColor whiteColor]];
+    [throttleTitle setCenter:CGPointMake(70, 170)];
+    [windowView addSubview:throttleTitle];
+    [throttleTitle release];
+    
+    
+    
+    rollLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 70, 30)];
+    [rollLabel setText:@""];
+    [rollLabel setFont:[UIFont systemFontOfSize:20]];
+    [rollLabel setTextColor:[UIColor whiteColor]];
+    [rollLabel setCenter:CGPointMake(155, 50)];
+    [windowView addSubview:rollLabel];
+    
+    pitchLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 70, 30)];
+    [pitchLabel setText:@""];
+    [pitchLabel setFont:[UIFont systemFontOfSize:20]];
+    [pitchLabel setTextColor:[UIColor whiteColor]];
+    [pitchLabel setCenter:CGPointMake(155, 90)];
+    [windowView addSubview:pitchLabel];
+    
+    yawLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 70, 30)];
+    [yawLabel setText:@""];
+    [yawLabel setFont:[UIFont systemFontOfSize:20]];
+    [yawLabel setTextColor:[UIColor whiteColor]];
+    [yawLabel setCenter:CGPointMake(155, 130)];
+    [windowView addSubview:yawLabel];
+    
+    thrLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 70, 30)];
+    [thrLabel setText:@""];
+    [thrLabel setFont:[UIFont systemFontOfSize:20]];
+    [thrLabel setTextColor:[UIColor whiteColor]];
+    [thrLabel setCenter:CGPointMake(155, 170)];
+    [windowView addSubview:thrLabel];
+    
+    comLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 70, 30)];
+    [comLabel setText:@""];
+    [comLabel setFont:[UIFont systemFontOfSize:20]];
+    [comLabel setTextColor:[UIColor whiteColor]];
+    [comLabel setCenter:CGPointMake(155, 210)];
+    [windowView addSubview:comLabel];
     
     
     
@@ -181,12 +267,6 @@
 
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
 {
-    _rollLabel.text = @"";
-    _pitchLabel.text = @"";
-    _yawLabel.text = @"";
-    _throttleLabel.text = @"";
-    _commandLabel.text = @"";
-    
     alertView = [[UIAlertView alloc] initWithTitle:@"Connecting bluetooth device\nPlease Wait..."
                                            message:nil delegate:self cancelButtonTitle:nil otherButtonTitles: nil];
     [alertView show];
@@ -259,10 +339,11 @@
         int16_t* yawInt = (int16_t*)yawData.bytes;
         float yawAngle = (*yawInt)/(float)100;
         
-        _rollLabel.text = [NSString stringWithFormat:@"%.2f", rollAngle];
-        _pitchLabel.text = [NSString stringWithFormat:@"%.2f", pitchAngle];
-        _yawLabel.text = [NSString stringWithFormat:@"%.2f", yawAngle];
-        _throttleLabel.text = [NSString stringWithFormat:@"%d", thrValue];
+        
+        rollLabel.text = [NSString stringWithFormat:@"%.2f", rollAngle];
+        pitchLabel.text = [NSString stringWithFormat:@"%.2f", pitchAngle];
+        yawLabel.text = [NSString stringWithFormat:@"%.2f", yawAngle];
+        thrLabel.text = [NSString stringWithFormat:@"%d", thrValue];
         
         
         CGAffineTransform translate = CGAffineTransformMakeTranslation(0,(32/(float)9)*[self saturation:pitchAngle :45]);
@@ -275,13 +356,18 @@
     }
    else
    {
-       NSData* chaData = characteristic.value;
+       //NSData* chaData = characteristic.value;
        
-       const unsigned* chaDataConst = [chaData bytes];
-       NSString* chaDataString = [NSString stringWithFormat:@"%08x", ntohl(chaDataConst[0])];
-       
-       _commandLabel.text = [chaDataString substringWithRange:NSMakeRange(1, 1)];
+       //const unsigned* chaDataConst = [chaData bytes];
+       //NSString* chaDataString = [NSString stringWithFormat:@"%08x", ntohl(chaDataConst[0])];
+      // comLabel.text = [chaDataString substringWithRange:NSMakeRange(1, 1)];
     }
+}
+
+
+- (void)peripheral:(CBPeripheral *)peripheral didWriteValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
+{
+
 }
 
 
@@ -310,17 +396,69 @@
 #pragma mark - Button Method
 - (IBAction)graphBtnClick:(id)sender
 {
-    
+    if(windowFlag == 1)
+    {
+        windowView.hidden = NO;
+        windowFlag = 0;
+    }
+    else
+    {
+        windowView.hidden = YES;
+        windowFlag = 1;
+    }
 }
 
 
 - (IBAction)sliderValueChange:(id)sender
 {
     UISlider* senderSlider = sender;
-
-    int i = (int)(9*senderSlider.value);
-    [self.ConPeripheral writeValue:[NSData dataWithBytes: &i length: sizeof(i)] forCharacteristic:self.comCharac type:CBCharacteristicWriteWithResponse];
+    
+    int i = (int)(255*senderSlider.value);
+    
+    RGB[0] = i;
+    
+    [self.ConPeripheral writeValue:[NSData dataWithBytes: &RGB[0] length:5] forCharacteristic:self.comCharac type:CBCharacteristicWriteWithResponse];
     [self.ConPeripheral readValueForCharacteristic:self.comCharac];
-
 }
+
+- (IBAction)brightValueChange:(id)sender
+{
+    UISlider* senderSlider = sender;
+    
+    int i = (int)(255*senderSlider.value);
+    RGB[3] = i;
+    
+    [self.ConPeripheral writeValue:[NSData dataWithBytes: &RGB[0] length:5] forCharacteristic:self.comCharac type:CBCharacteristicWriteWithResponse];
+    [self.ConPeripheral readValueForCharacteristic:self.comCharac];
+}
+
+- (IBAction)sliderGreenValueChange:(id)sender
+{
+    UISlider* senderSlider = sender;
+    
+    int i = (int)(255*senderSlider.value);
+    RGB[1] = i;
+    [self.ConPeripheral writeValue:[NSData dataWithBytes: &RGB[0] length:5] forCharacteristic:self.comCharac type:CBCharacteristicWriteWithResponse];
+    [self.ConPeripheral readValueForCharacteristic:self.comCharac];
+}
+
+- (IBAction)sliderBlueValueChange:(id)sender
+{
+    UISlider* senderSlider = sender;
+    
+    int i = (int)(255*senderSlider.value);
+    RGB[2] = i;
+    [self.ConPeripheral writeValue:[NSData dataWithBytes: &RGB[0] length:5] forCharacteristic:self.comCharac type:CBCharacteristicWriteWithResponse];
+    [self.ConPeripheral readValueForCharacteristic:self.comCharac];
+}
+
+- (IBAction)motorValueChange:(id)sender
+{
+    if ([sender isOn]) RGB[4] = 1;
+    else RGB[4] = 0;
+    
+    [self.ConPeripheral writeValue:[NSData dataWithBytes: &RGB[0] length:5] forCharacteristic:self.comCharac type:CBCharacteristicWriteWithResponse];
+    [self.ConPeripheral readValueForCharacteristic:self.comCharac];
+}
+
 @end
